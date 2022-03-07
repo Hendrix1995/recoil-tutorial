@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styled from "styled-components";
+import { atom, useRecoilState } from "recoil";
+
+const Landing = styled.div`
+    text-align: center;
+    font-size: 2rem;
+`;
+
+const UserInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const UserId = styled.input`
+    margin: 0.5rem;
+    padding: 0.5rem;
+`;
+
+const IsUserId = styled.div`
+    text-align: center;
+    font-size: 1rem;
+`;
+
+const userIdState = atom({
+    key: "userId",
+    default: 0,
+});
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { userId, setUserId } = useState("");
+    const handleChange = (e) => {
+        setUserId(e.target.value);
+    };
+
+    console.log(userId);
+
+    return (
+        <>
+            <Landing>Hello World!</Landing>
+            <UserInfoContainer>
+                <UserId onClick={handleChange} />
+                <div>{userId}</div>
+            </UserInfoContainer>
+        </>
+    );
 }
 
 export default App;
