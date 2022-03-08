@@ -21,6 +21,13 @@ const UserId = styled.input`
 const IsUserId = styled.div`
     text-align: center;
     font-size: 1rem;
+    color: black;
+`;
+
+const RedUserId = styled.div`
+    text-align: center;
+    font-size: 1rem;
+    color: red;
 `;
 
 const userIdState = atom({
@@ -44,15 +51,13 @@ function App() {
 
     const count = useRecoilValue(countIdLength);
 
-    console.log(userId);
-
     return (
         <>
             <Landing>Hello World!</Landing>
             <UserInfoContainer>
                 <UserId onChange={handleChange} />
-                <IsUserId>유저 아이디는 {userId}입니다.</IsUserId>
-                <IsUserId>Length:{count}</IsUserId>
+                {count < 4 ? <IsUserId>유저 아이디는 {userId}입니다.</IsUserId> : <RedUserId>유저 아이디는 {userId}입니다.</RedUserId>}
+                <IsUserId>Length:{userId.length}</IsUserId>
             </UserInfoContainer>
         </>
     );
